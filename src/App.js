@@ -1,24 +1,34 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import axios from "axios";
+import {useEffect, useState} from "react";
+import Transactions from "./components/transactions";
+
+// Axios API Configuration
+const API_URL = 'http://localhost:8000/api/v1/transactions?user_id=1'
+function getAPIData(){
+  return axios.get(API_URL).then((response) => response.data)
+}
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+  const [transactions,setTransactions] = useState([]);
+
+  useEffect(() => {
+    let mounted = true;
+    getAPIData().then((items) => {
+      if (mounted) {
+        setTransactions(items);
+      }
+    });
+    return () => (mounted = false);
+  }, []);
+
+return (
+  <div className="App">
+    <h1>Transactions</h1>
+    <Transactions transactions = {transactions} />
+  </div>
   );
 }
 
