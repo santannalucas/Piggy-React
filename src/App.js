@@ -1,34 +1,42 @@
-// import logo from './logo.svg';
-import './App.css';
-import axios from "axios";
-import {useEffect, useState} from "react";
-import Transactions from "./components/transactions";
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-// Axios API Configuration
-const API_URL = 'http://localhost:8000/api/v1/transactions?user_id=1'
-function getAPIData(){
-  return axios.get(API_URL).then((response) => response.data)
+import './App.css';
+import Dashboard from './components/Dashboard/Dashboard';
+import Login from './components/Login';
+
+function setToken(userToken) {
+  sessionStorage.setItem('token', JSON.stringify(userToken));
+}
+
+function getToken() {
+  var tokenString = sessionStorage.getItem('token');
+  var userToken = JSON.parse(tokenString);
+  
+  if (userToken) {
+    console.log('User Logged In')
+    return userToken.token;
+  }
+  
+  return null;
 }
 
 function App() {
+  const token = getToken();
 
-  const [transactions,setTransactions] = useState([]);
+  if(!token) {
+    return <Login setToken={setToken} />
+  }
 
-  useEffect(() => {
-    let mounted = true;
-    getAPIData().then((items) => {
-      if (mounted) {
-        setTransactions(items);
-      }
-    });
-    return () => (mounted = false);
-  }, []);
-
-return (
-  <div className="App">
-    <h1>Transactions</h1>
-    <Transactions transactions = {transactions} />
-  </div>
+  return (
+    <div className="wrapper">
+      <h1>Application</h1>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/dashboard" element={<Dashboard/>} /> 
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
