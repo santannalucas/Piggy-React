@@ -12,18 +12,18 @@ async function loginUser(credentials) {
    .then(data => data.json());
 }
 
-export default function Login({ setToken }) {
+export default function Login({ setToken, setUser }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const token = await loginUser({
+    const api_response = await loginUser({
       email,
       password
     });
-    setToken(token);
 
+    setToken(api_response);
   }
 
   return(
