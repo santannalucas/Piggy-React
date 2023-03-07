@@ -1,0 +1,52 @@
+
+#login{
+	text-align: center;
+	width: 40%;
+	border-radius: 15px;
+	border: solid 1px #dddddd;
+	position: relative;
+	margin: 15% 30%;
+	padding: 20px;
+	}
+
+
+#login ul {
+	list-style: none;
+	line-height: 24px;
+}
+
+#login li {
+	text-align: left;
+	width: 50%;
+	cursor: pointer;
+	padding: 0;
+	margin: 0 25%;
+}
+
+.login-input{
+	width: 100%;
+}
+
+.login-submit{
+	padding: 5px;
+	width: 30%;
+	margin: 10px;
+	font-size: 15px;
+}
+
+#login-logo{
+	text-align: center;
+	margin: 0 30%;
+	width: 40%;
+}
+
+#login-footer{
+	text-align: center;
+	font-size: 10px;
+}
+
+.remember{
+	font-size: 12px;
+}
+
+

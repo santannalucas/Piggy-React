@@ -1,10 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './assets/styles/App.css';
-import Dashboard from './components/Dashboard/Dashboard';
+import './App.css';
+import './fontawesome/css/all.css'
+import Dashboard from './Dashboard';
 import Login from './components/Login';
 import useToken from './useToken';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar/Navbar';
+import Users from './components/Admin/Users/Users';
+import Schedulers from './components/Schedulers/Schedulers';
+
 
 
 function App() {
@@ -16,16 +20,17 @@ function App() {
   }
     
   return (
-    <div className="wrapper">
-      <Navbar token = {token}/>
-      <h1>Application</h1>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Dashboard/>} />
-          <Route path="/Admin/Users/" />
-          <Route path="/Admin/Access/" />  
-        </Routes>
+    <div>
+      <Navbar/>
+      <div className="wrapper">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Dashboard/>} />
+            <Route path="/Admin/Users" element={<Users/>} />
+            <Route path="/Schedulers" element={<Schedulers/>}/>
+          </Routes>
       </BrowserRouter>
+      </div>
     </div>
   );
 }

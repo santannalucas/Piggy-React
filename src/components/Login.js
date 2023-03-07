@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import './Login.css'
 
 async function loginUser(credentials) {
  return fetch('http://localhost:8000/login_api', {
@@ -27,19 +28,17 @@ export default function Login({ setToken, setUser }) {
   }
 
   return(
-    <div className="login-wrapper">
-      <h1>Please Log In</h1>
+    <div id="login">
+      <div id='login-logo'>	<img src="logo_l.png" alt='logo' width='100%'/></div>
       <form onSubmit={handleSubmit}>
-        <label>
-          <p>Email</p>
-          <input type="text" onChange={e => setEmail(e.target.value)} />
-        </label>
-        <label>
-          <p>Password</p>
-          <input type="password" onChange={e => setPassword(e.target.value)} />
-        </label>
+      <ul className="login-menu">
+        <li><label className='login-label'>E-mail:</label></li>
+        <li><input type="text" onChange={e => setEmail(e.target.value)} className='login-input'/></li>
+        <li><label className='login-label'>Password:</label></li>
+        <li><input type="password" onChange={e => setPassword(e.target.value)} className="login-input"/></li>
+      </ul>
         <div>
-          <button type="submit">Submit</button>
+          <button type="submit" className='login-submit'>Login</button>
         </div>
       </form>
     </div>
