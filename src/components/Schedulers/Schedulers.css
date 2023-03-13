@@ -1,12 +1,13 @@
 .sch-list-item{
-    width: 100%;
-    height: 50px;
-    display: flex;
+    height: 65px;
     font-size: 1.2em;
-    justify-content: space-between;
 }
 
+.sch-item.comp{
+    width: 30%;
+}
 .sch-name{
+    margin-left: 30px;
     float: left;
     width: 50%;
     font-weight: bold;
@@ -15,18 +16,31 @@
 .sch-name span{
     color: #a1a1a1;
 }
+.sch-date{
+    right: 150px;
+    position:absolute;
+}
 
-.sch-type{
+.sch-type{ 
+    margin-top: 5px;
+    position:absolute
 
 }
 
 .sch-amount{
-    width: 25%;
-    height: 50px;
-    float: right;
+    position: absolute;
+    right:0;
+}
+.sch-type span{ 
+    color: #a1a1a1;
+    font-size: 1em;
 }
 
-.sch-desc{
-
+.sch-completed{
+    position: absolute;
+    width: 50px;
 }
-
+.sch-status{font-size: 22px}
+.sch-status.active{color: #e0ac3c
+}
+.sch-status.completed{color: #3f9831}

@@ -2,13 +2,19 @@ import React from "react";
 import './Schedulers.css'
 
 function SchedulerType(scheduler){
-  if(scheduler.scheduler_type.name === 'Split Payments')
-    { return scheduler.split + " Payments of $" + (scheduler.amount/scheduler.split).toFixed(2) } 
+  if(scheduler.scheduler_type.name === ' - Split Payments')
+    { return " - " + scheduler.split + " Payments of $" + (scheduler.amount/scheduler.split).toFixed(2) } 
   else if(scheduler.scheduler_type.name === 'Periodic Payments')
-    { return scheduler.period } 
+    { return " - " + scheduler.scheduler_period.name} 
   else { 
-    return "Single Payment"
+    return " - Single Payment of " + scheduler.amount.toFixed(2)
   }
+};
+
+function SchedulerDate(date){
+  let isoDate = date
+  var d = new Date(isoDate)
+  return d.toLocaleDateString('en-GB')
 };
 
 const SchedulerList = ({ schedulers }) => {
@@ -16,13 +22,17 @@ const SchedulerList = ({ schedulers }) => {
     <div className="sch-list">
       {schedulers.map(scheduler => (
         <div className="sch-list-item" key={scheduler.id} >
-          <div className="sch-name">{scheduler.account.name} - <span className="sch-bank-name">{scheduler.bank_account.name  } </span></div><br/>
-          <div className="sch-type"> { scheduler.scheduler_type.name } </div>
-          <div className="sch-amount">$ {scheduler.amount.toFixed(2) }</div>
-          <div className="sch-desc">{scheduler.description}</div>
-          <div className="sch-type-str">{SchedulerType(scheduler)}</div>
-          <div className="sch-date"> {scheduler.created_at}</div>
-          <div className="sch-completed"><i className={scheduler.completed ? 'fas fa-check-circle scheduler completed' : 'fas fa-exclamation-circle scheduler active'}/></div>
+          <div className="sch-item comp">
+            <div className="sch-completed"><i className={scheduler.completed ? 'fas fa-check-circle sch-status completed' : 'fas fa-exclamation-circle sch-status active'}/></div>
+            <div className="sch-name">{scheduler.account.name} - <span className="sch-bank-name">{scheduler.bank_account.name  } </span></div><br/>
+            <div className="sch-type"> { scheduler.scheduler_type.name } {SchedulerType(scheduler)} {scheduler.description ? <span > - {scheduler.description}</span> : ''}</div>
+          </div>
+          <div className="sch-item comp">
+          </div>
+          <div className="sch-item comp">
+            <div className="sch-amount">$ {scheduler.amount.toFixed(2) }</div>
+            <div className="sch-date"> {SchedulerDate(scheduler.created_at)}</div>
+          </div>
         </div>
       ))}
     </div>

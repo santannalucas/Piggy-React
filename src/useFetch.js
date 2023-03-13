@@ -8,7 +8,7 @@ const useFetch = (url) => {
 
     useEffect(() => {
         setTimeout(() => {
-        fetch("http://192.168.73.128:8000/api/v1/" + url, {  
+        fetch("http://localhost:8000/api/v1/" + url, {  
             headers: {
                 'Authorization': JSON.parse(sessionStorage.token).token,
                 'Content-Type': 'application/json'
