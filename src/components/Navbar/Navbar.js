@@ -16,6 +16,10 @@ export default function Navbar() {
         setUser(data);
         setNavbar(JSON.parse(data.navbar));
       })
+      .catch(err => {
+        Logout()
+        console.log(err)
+      })
   }, []);
 
   function Logout() {
@@ -30,8 +34,7 @@ export default function Navbar() {
         {navbar ? (
           <nav className="navbar">
             {/* Logo */}
-              <a href="/" className="nav-logo"><img src='/logo192.png' height='100%' alt='Dashboard' title="Dashboard"/></a>
-              {console.log(navbar)}   
+              <a href="/" className="nav-logo"><img src='/logo192.png' height='100%' alt='Dashboard' title="Dashboard"/></a> 
                 {navbar.map((dropdown, index) => (
                   <div className="dropdown" key={index}>
                     <div className="drop-btn">

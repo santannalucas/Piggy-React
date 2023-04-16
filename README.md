@@ -1,3 +1,6 @@
+Welcome to Open Piggy - React UI client.
+
+This is a client for Piggy API V1 running on localhost port 8000.
 
 In the project directory, you can run:
 
